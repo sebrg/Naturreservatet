@@ -34,9 +34,9 @@
           
       }
 
-        function makeSound()
+        function makeSound() //Få in denna i alert istället? 
         {
-            return $this->name . $this->sound; //Fixa alert när man klickar på bild..
+            return $this->name . $this->sound; 
         }
     }
 
@@ -82,26 +82,32 @@
     $myCocos =  $_POST["coco"];
 
     $myAnimals = array();
-    $data = file_get_contents("https://randomuser.me/api/");
-    $name = json_decode($data)->results[0]->name->first;
+    
 
-
-    for ($i=0; $i < $myApes ; $i++) { 
+    for ($i=0; $i < $myApes ; $i++) {
+        $data = file_get_contents("https://randomuser.me/api/");
+        $name = json_decode($data)->results[0]->name->first; 
         $ape = new Ape($name);
         array_push($myAnimals, $ape);
 
     }
-    for ($i=0; $i < $myGiraffes ; $i++) { 
+    for ($i=0; $i < $myGiraffes ; $i++) {
+        $data = file_get_contents("https://randomuser.me/api/");
+        $name = json_decode($data)->results[0]->name->first; 
         $giraffe = new Giraffe($name);
         array_push($myAnimals, $giraffe);
 
     }
-    for ($i=0; $i < $myTigers ; $i++) { 
+    for ($i=0; $i < $myTigers ; $i++) {
+        $data = file_get_contents("https://randomuser.me/api/");
+        $name = json_decode($data)->results[0]->name->first; 
         $tiger = new Tiger($name);
         array_push($myAnimals, $tiger);
 
     }
-    for ($i=0; $i < $myCocos ; $i++) { 
+    for ($i=0; $i < $myCocos ; $i++) {
+        $data = file_get_contents("https://randomuser.me/api/");
+        $name = json_decode($data)->results[0]->name->first; 
         $cocos = new Coco($name);
         array_push($myAnimals, $cocos);
 
@@ -109,7 +115,7 @@
 
     foreach ($myAnimals as $value) {
         $sound = $value->sound;
-        echo "<img onclick=alert('$name'+'...$sound') style='width: 250px;' src='". $value->picture ."'>";
+        echo "<img onclick=alert('$value->name'+'...$sound') style='width: 250px;' src='". $value->picture ."'>";
         echo "<br>";
         echo "<h2> $value->name </h3>";
         echo "<h5> $value->sound </h3>";     
