@@ -10,30 +10,33 @@
 <?php 
     abstract class Animals {
 
-        public $image;
+        public $picture;
         public $name;
-        
-        function __construct($name, $picture)
-        {
-           
+        public $sound;
+
+        function __construct($name, $picture, $sound)
+        {  
+            
             $this->name = $name;
             $this->picture = $picture;
-           
+            $this->sound = $sound;
+            
         }
         
-        abstract function makeSound();
-        
+        abstract function makeSound();    
     }
 
     class Ape extends Animals {
       function __construct($name) {
           $this->picture = "./img/apa.jpg";
           $this->name = $name;
+          $this->sound = "oo-oo-oo";
+          
       }
 
         function makeSound()
         {
-            return $this->name . "afawfaw"; //Fixa alert när man klickar på bild..
+            return $this->name . $this->sound; //Fixa alert när man klickar på bild..
         }
     }
 
@@ -41,10 +44,11 @@
         function __construct($name) {
             $this->picture = "./img/giraffe.jpg";
             $this->name = $name;
+            $this->sound = "moooo-aar";
         }
         function makeSound()
         {
-            return $this->name . "afawfaw"; 
+            return $this->name . $this->sound;
         }
     }
 
@@ -52,10 +56,11 @@
         function __construct($name) {
             $this->picture = "./img/tiger.jpg";
             $this->name = $name;
+            $this->sound = "raaawr";
         }
         function makeSound()
         {
-            return $this->name . "afawfaw"; 
+            return $this->name . $this->sound; 
         }
     }
 
@@ -63,10 +68,11 @@
         function __construct($name) {
             $this->picture = "/img/coco.jpg";
             $this->name = $name;
+            $this->sound = "dooinkk";
         }
         function makeSound()
         {  
-          return $this->name . "afawfaw";   
+            return $this->name . $this->sound;  
         }
     }
 
@@ -76,6 +82,9 @@
     $myCocos =  $_POST["coco"];
 
     $myAnimals = array();
+    $data = file_get_contents("https://randomuser.me/api/");
+    $name = json_decode($data)->results[0]->name->first;
+
 
     for ($i=0; $i < $myApes ; $i++) { 
         $ape = new Ape($name);
@@ -99,16 +108,15 @@
     }
 
     foreach ($myAnimals as $value) {
-        echo "<img style='width: 150px;' src='". $value->picture ."'>";   
+        $sound = $value->sound;
+        echo "<img onclick=alert('$name'+'...$sound') style='width: 250px;' src='". $value->picture ."'>";
         echo "<br>";
-       
-        
+        echo "<h2> $value->name </h3>";
+        echo "<h5> $value->sound </h3>";     
     }
-
+    
 
 ?>
 
-
-    
 </body>
 </html>
