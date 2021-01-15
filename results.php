@@ -117,8 +117,8 @@
         $sound = $value->sound;
         echo "<img onclick=alert('$value->name'+'...$sound') style='width: 250px;' src='". $value->picture ."'>";
         echo "<br>";
-        echo "<h2> $value->name </h3>";
-        echo "<h5> $value->sound </h3>";     
+        echo "<h2> $value->name </h2>";
+        echo "<h5> $value->sound </h5>";     
     }
     
 
